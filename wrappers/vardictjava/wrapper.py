@@ -19,6 +19,7 @@ coordinates_are_zero_based = snakemake.params.get('coordinates_are_zero_based', 
 do_not_print_end_tag = snakemake.params.get('do_not_print_end_tag', True)
 do_pileup = snakemake.params.get('do_pileup', True)
 hex_filter = snakemake.params.get('hex_filter', '0x500')
+include_Ns = snakemake.params.get('include_Ns', False)
 max_mean_mismatches = snakemake.params.get('max_mean_mismatches', 5.25)
 max_mismatches_per_read = snakemake.params.get('max_mismatches_per_read', 8)
 min_allele_frequency = snakemake.params.get('min_allele_frequency', 0.05)
@@ -63,6 +64,7 @@ vardict_command = (
     " -th {snakemake.threads}"         # Threads count
 )
 vardict_command += " -p" if do_pileup else ""                          # Do pileup regardless of frequency
+vardict_command += " -K" if include_Ns else ""                         # Include Ns in the total depth calculation 
 vardict_command += " -z 1" if coordinates_are_zero_based else " -z 0"  # Whether coordinates are 0 or 1-based
 vardict_command += " {snakemake.input.bed}"                            # "region_info" file
 
