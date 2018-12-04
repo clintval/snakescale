@@ -10,6 +10,7 @@ from snakemake.shell import shell
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
+all_variants = snakemake.params.get('all_variants', True)
 do_not_print_end_tag = snakemake.params.get('do_not_print_end_tag', True)
 col_chromosome = snakemake.params.get('col_chromosome', 1)
 col_end = snakemake.params.get('col_end', 3)
@@ -90,6 +91,7 @@ var2vcf_valid_command = (
     " -N {sample_name}"                          # The sample name to be used directly
 )
 var2vcf_valid_command += " -E" if do_not_print_end_tag else ""  # If set, do not print END tag
+var2vcf_valid_command += " -A" if all_variants else ""          # Indicate to output all variants at the same position.
 
 if output_gvcf:
     command = " | ".join([
