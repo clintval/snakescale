@@ -1,0 +1,6 @@
+channels:
+  - clinval
+  - bioconda
+dependencies:
+  - snakescale
+  - bedtools
