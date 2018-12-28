@@ -24,7 +24,7 @@ Features:
     >>> params:
     ...     reference=True
     ...     adapters_to_check=['nextera', 'illumina']
-    ... scale('picard', 'tool')
+    >>> wrapper: scale('picard', 'tool')
     ```
     ```bash
     ❯ picard tool REFERENCE=true ADAPTERS_TO_CHECK=nextera ADAPTERS_TO_CHECK=illumina
@@ -33,7 +33,7 @@ Features:
     ```python
     >>> resources:
     ...     heap_size=2800
-    ... scale('picard', 'tool')
+    >>> wrapper: scale('picard', 'tool')
     ```
     ```bash
     ❯ picard -Xmx2800 tool 
@@ -42,7 +42,7 @@ Features:
     ```python
     >>> params:
     ...     this_flag_is_so_new=false
-    ... scale('picard', 'tool')
+    >>> wrapper: scale('picard', 'tool')
     ```
     ```bash
     ❯ picard tool THIS_FLAG_IS_SO_NEW=false
