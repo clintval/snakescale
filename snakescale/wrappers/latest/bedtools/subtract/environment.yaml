@@ -3,4 +3,4 @@ channels:
 dependencies:
   - bedtools
   - pip:
-    - snakescale
+    - snakescale>=0.6.0
