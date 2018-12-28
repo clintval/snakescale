@@ -1,10 +1,14 @@
 import setuptools
+import shutil
 from setuptools import find_packages
 
 from pathlib import Path
 
 PACKAGE = 'snakescale'
 VERSION = '0.6.0'
+
+for path in Path('snakescale/wrappers/').rglob('.snakemake'):
+    shutil.rmtree(path)
 
 setuptools.setup(
     name=PACKAGE,
