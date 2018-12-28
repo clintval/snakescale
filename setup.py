@@ -4,7 +4,7 @@ from setuptools import find_packages
 from pathlib import Path
 
 PACKAGE = 'snakescale'
-VERSION = '0.4.0'
+VERSION = '0.5.0'
 
 setuptools.setup(
     name=PACKAGE,
@@ -19,6 +19,7 @@ setuptools.setup(
     license='MIT',
     zip_safe=False,
     packages=find_packages(),
+    include_package_data=True,
     install_requires=['snakemake>=4.5.1'],
     keywords='snakemake pipeline wrapper',
     classifiers=[
@@ -30,6 +31,6 @@ setuptools.setup(
     ],
     project_urls={
         'Documentation': f'https://{PACKAGE}.readthedocs.io',
-        'Issue-Tracker': f'https://github.com/clintval/{PACKAGE}/issues',
+        'Issue Tracker': f'https://github.com/clintval/{PACKAGE}/issues',
     },
 )
