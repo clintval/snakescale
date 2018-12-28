@@ -17,17 +17,38 @@ Non-strict wrappers for the data pipelining language Snakemake.
 
 Features:
 
-- Do the wrappers in the [official wrapper repository](https://bitbucket.org/snakemake/snakemake-wrappers) get you half of the way to writing rules in only Python syntax?
-- Do want your rules fully parameterized with the `input`, `output`, `resources`, and `params` keys only?
-- Do you want to use the builtin Python types as values to a rule?
-- Do you want to use the Snakemake resource system for JVM resources?
-- Do you want a Snakemake wrapper which hard-codes as little as possible besides the **style** of the CLI it's wrapping?
-Read the documentation at: [snakescale.readthedocs.io](http://snakescale.readthedocs.io/)
-- Snakescale does all this and is conda environment compatible!
+- Write Snakemake rules in Python-only syntax, no more shell directives!
+- These wrappers wrap the style of the tool's CLI only, and not strict, inflexible shell templates.
+- Use builtin Python types for every single parameter values:
+    ```python
+    >>> params:
+    ...     reference=True
+    ...     adapters_to_check=['nextera', 'illumina']
+    ... scale('picard', 'tool')
+    ```
+    ```bash
+    ❯ picard tool REFERENCE=true ADAPTERS_TO_CHECK=nextera ADAPTERS_TO_CHECK=illumina
+    ```
+- Use the Snakemake resource system for JVM resources:
+    ```python
+    >>> resources:
+    ...     heap_size=2800
+    ... scale('picard', 'tool')
+    ```
+    ```bash
+    ❯ picard -Xmx2800 tool 
+    ```
+- Continuous support for new tool arguments and options by smart parameter style conversion:
+    ```python
+    >>> params:
+    ...     this_flag_is_so_new=false
+    ... scale('picard', 'tool')
+    ```
+    ```bash
+    ❯ picard tool THIS_FLAG_IS_SO_NEW=false
+    ```
 
-This project aims to wrap bioinformatics utilities with style and variable converters instead of strict, inflexible shell templates. The wrappers in this project are unaware of the command line flags of the tool the wrapper is wrapping!
-
-## Example
+## Complete Example
 
 ```python
 from snakescale import scale
