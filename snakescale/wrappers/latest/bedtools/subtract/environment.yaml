@@ -1,6 +1,7 @@
 channels:
-  - clinval
   - bioconda
 dependencies:
-  - snakescale
   - bedtools
+  - snakemake
+  - pip:
+    - snakescale
