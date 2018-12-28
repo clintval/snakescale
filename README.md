@@ -8,13 +8,10 @@
 [![MyPy Checked](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-Future home of `snakescale`
-===
-
 Non-strict wrappers for the data pipelining language Snakemake.
 
 ```bash
-❯ # pip install snakescale
+❯ pip install snakescale
 ```
 
 Features:
@@ -26,4 +23,6 @@ Features:
 - Do you want a Snakemake wrapper which hard-codes as little as possible besides the **style** of the CLI it's wrapping?
 Read the documentation at: [snakescale.readthedocs.io](http://snakescale.readthedocs.io/)
 
-This project aims to wrap bioinformatics utilities with style and variable type converters instead of strict, inflexible shell templates. The wrappers in this project are unaware of the command line flags of the tool the wrapper is wrapping!
+This project aims to wrap bioinformatics utilities with style and variable converters instead of strict, inflexible shell templates.
+
+The wrappers in this project are unaware of the command line flags of the tool the wrapper is wrapping!
