@@ -23,7 +23,62 @@ Features:
 - Do you want to use the Snakemake resource system for JVM resources?
 - Do you want a Snakemake wrapper which hard-codes as little as possible besides the **style** of the CLI it's wrapping?
 Read the documentation at: [snakescale.readthedocs.io](http://snakescale.readthedocs.io/)
+- Snakescale does all this and is conda environment compatible!
 
-This project aims to wrap bioinformatics utilities with style and variable converters instead of strict, inflexible shell templates.
+This project aims to wrap bioinformatics utilities with style and variable converters instead of strict, inflexible shell templates. The wrappers in this project are unaware of the command line flags of the tool the wrapper is wrapping!
 
-The wrappers in this project are unaware of the command line flags of the tool the wrapper is wrapping!
+## Example
+
+```python
+from snakescale import scale
+
+rule bedtools_subtract:
+    input:
+        a='data/a.bed',
+        b='data/b.bed'
+    output: 'data/result.bed'
+    params:
+        no_name_check=True,
+        g='data/ref.genome'
+    wrapper: scale('bedtools', 'subtract')
+```
+
+Which executes this under the hood:
+
+```bash
+❯ bedtools subtract -a data/a.bed -b data/b.bed -nonamecheck -g data/ref.genome > data/result.bed
+```
+
+By invoking the following:
+
+```bash
+❯ snakemake -F --use-conda
+
+Building DAG of jobs...
+
+Creating conda environment .../bedtools/subtract/environment.yaml...
+Downloading remote packages.
+Environment for .../bedtools/subtract/environment.yaml created (location: .snakemake/conda/32f9fcde)
+Using shell: /usr/local/bin/bash
+Provided cores: 1
+
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	bedtools_subtract
+	1
+
+[Fri Dec 28 13:13:47 2018]
+rule bedtools_subtract:
+    input: data/a.bed, data/b.bed
+    output: data/result.bed
+    jobid: 0
+
+Activating conda environment: .snakemake/conda/32f9fcde
+
+[Fri Dec 28 13:13:47 2018]
+Finished job 0.
+
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2018-12-28T131312.471617.snakemake.log
+```

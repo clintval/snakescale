@@ -5,7 +5,7 @@ from setuptools import find_packages
 from pathlib import Path
 
 PACKAGE = 'snakescale'
-VERSION = '0.6.0'
+VERSION = '0.7.0'
 
 for path in Path('snakescale/wrappers/').rglob('.snakemake'):
     shutil.rmtree(path)
@@ -25,9 +25,7 @@ setuptools.setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[],
-    extras_requires={
-        'full': 'snakemake>=4.5.1'
-    },
+    extras_require={'full': 'snakemake>=4.5.1'},
     keywords='snakemake pipeline wrapper',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

@@ -12,7 +12,7 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda install virtualenv
+  - conda install virtualenv  # Use conda's virtualenv for Tox
   - pip install codecov tox-travis
   - pip install requests jinja2 anaconda-client
 
