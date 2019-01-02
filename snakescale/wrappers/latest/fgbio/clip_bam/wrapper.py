@@ -7,9 +7,9 @@ __license__ = 'MIT'
 
 from snakemake.shell import shell
 
-from snakescale.utils import collect_jvm_resources
-from snakescale.utils import collect_picard_style_jvm_resources
-from snakescale.utils import format_fgbio_params
+from snakescale.resources import collect_jvm_resources
+from snakescale.resources import collect_picard_style_jvm_resources
+from snakescale.formatters import format_fgbio_params
 
 extra = snakemake.params.get('extra', '')
 extra += collect_jvm_resources()
