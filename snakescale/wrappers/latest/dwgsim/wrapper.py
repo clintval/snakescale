@@ -13,7 +13,7 @@ output_prefix = snakemake.params["output_prefix"]
 
 extra = snakemake.params.get('extra', '')
 
-params = make_dwgsim_params(snakemake.params)
+params = format_dwgsim_params(snakemake.params)
 
 log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
